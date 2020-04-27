@@ -1,9 +1,10 @@
-import React from "react"
+import React from "react";
+import { Container } from "../assets/styles/footerStyling"
 
 export default function Footer() {
     return (
-        <div>
+        <Container>
             <p>Footer</p>
-        </div>
+        </Container>
     )
 }
