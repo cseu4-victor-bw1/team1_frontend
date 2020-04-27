@@ -17,4 +17,7 @@ export const MainContainer = styled.div`
 export const RoutersContainer = styled.div`
     grid-area: main;
     width: 60vw;
+    background-image: url("https://github.com/cseu4-victor-bw1/team1_frontend/blob/home/src/assets/images/textBox.png?raw=true");
+    background-size: cover;
+    background-repeat: no-repeat;
 `;
