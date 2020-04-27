@@ -11,9 +11,10 @@ export const MainContainer = styled.div`
     "  main    main   main  aside"
     " footer footer footer aside";
   overflow: hidden;
+  background-image: radial-gradient(#636363, #18181b, #000000);
 `
 
 export const RoutersContainer = styled.div`
     grid-area: main;
-    border: 2px solid red;
+    width: 60vw;
 `;

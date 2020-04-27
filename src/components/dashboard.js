@@ -1,9 +1,11 @@
-import React from "react"
+import React from "react";
+import Demo from "../assets/images/demo-game-play.gif"
+import { Img, Container } from "../assets/styles/dashboardStyling"
 
 export default function Dashboard() {
     return (
-        <div>
-            <p>Dashboard</p>
-        </div>
+        <Container>
+            {/* <Img src={Demo} /> */}
+        </Container>
     )
 }
