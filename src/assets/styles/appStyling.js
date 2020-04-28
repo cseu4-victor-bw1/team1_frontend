@@ -12,12 +12,13 @@ export const MainContainer = styled.div`
     " footer footer footer aside";
   overflow: hidden;
   background-image: radial-gradient(#636363, #18181b, #000000);
+  overflow: hidden;
 `
 
 export const RoutersContainer = styled.div`
     grid-area: main;
     width: 60vw;
-    background-image: url("https://github.com/cseu4-victor-bw1/team1_frontend/blob/home/src/assets/images/textBox.png?raw=true");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: none;
+    border: 5px solid rgb(205, 175, 106);
+    margin: 20px 10px 20px 40px; 
 `;

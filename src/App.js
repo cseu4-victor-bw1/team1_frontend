@@ -15,8 +15,8 @@ function App() {
     <MainContainer className="App">
       <Nav />
       <RoutersContainer>
-        <Route path="/" component={Dashboard} />
-        <Route path="/login" component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/" component={Login} />
         {/* <Route path="/dashboard" component={Dashboard} /> */}
       </RoutersContainer>
       <Controls />
