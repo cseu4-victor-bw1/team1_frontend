@@ -16,13 +16,19 @@ export const Img = styled.img`
     margin-top: 6%;
 `;
 
+export const TitleBox = styled.div`
+    background-image: url("https://github.com/cseu4-victor-bw1/team1_frontend/blob/home/src/assets/images/buttonLong.png?raw=true");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 20%;
+    padding: 2%;
+    text-align: center;
+    margin: 5% auto;
+`;
+
 export const Title = styled.h1`
-    width: 80%;
     letter-spacing: 3px;
-    /* position: relative;
-    bottom: 95px;
-    margin-left: 9%; */
-    background-image: url("../assets/images/buttonLong.png")
 `;
 
 export const Form = styled.form`
