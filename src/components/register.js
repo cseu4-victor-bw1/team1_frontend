@@ -1,13 +1,13 @@
 import React, { useState } from "react"
-import { Container, Title, Input, Form, TitleBox, Submit } from "../assets/styles/loginStyling";
-// import TitleBox from "../assets/images/buttonLong.png"
+import { Container, Title, Input, Form, TitleBox, Submit } from "../assets/styles/registerStyling"
 import axios from "axios";
 
-export default function Login() {
+export default function Register() {
 
     const [form, setForm] = useState({
         username: "",
-        password: ""
+        password1: "",
+        password2: ""
     })
 
     const handleChange = e => {
@@ -16,7 +16,7 @@ export default function Login() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post("https://lambda-mud-test.herokuapp.com/api/login", form)
+        axios.post("https://lambda-mud-test.herokuapp.com/api/registration/", form)
             .then(data => {
                 console.log(data)
             })
@@ -28,11 +28,12 @@ export default function Login() {
     return (
         <Container>
             <TitleBox>
-                <Title>LOGIN</Title>
+                <Title>REGISTER</Title>
             </TitleBox>
             <Form onSubmit={handleSubmit}>
                 <Input type="text" name="username" placeholder="Username" onChange={handleChange} />
-                <Input type="text" name="password" placeholder="Password" onChange={handleChange} />
+                <Input type="text" name="password1" placeholder="Password" onChange={handleChange} />
+                <Input type="text" name="password2" placeholder="Confirm your Password" onChange={handleChange} />
                 <Submit type="submit" onSubmit={handleSubmit} value="SUBMIT" />
             </Form>
         </Container>

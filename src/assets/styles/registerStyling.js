@@ -36,8 +36,8 @@ export const Form = styled.form`
     margin: auto;
     display: flex;
     flex-direction: column;
-    top: 50px;
-    position: relative;
+    /* top: 50px;
+    position: relative; */
 `;
 
 export const Input = styled.input`

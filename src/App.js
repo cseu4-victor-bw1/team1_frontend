@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Login from "./components/login";
+import Register from "./components/register"
 import Home from "./components/home";
 import Dashboard from "./components/dashboard";
 import Nav from "./components/nav";
@@ -16,7 +17,8 @@ function App() {
       <Nav />
       <RoutersContainer>
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Register} />
         {/* <Route path="/dashboard" component={Dashboard} /> */}
       </RoutersContainer>
       <Controls />
