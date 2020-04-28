@@ -21,4 +21,6 @@ export const RoutersContainer = styled.div`
     background: none;
     border: 10px inset rgb(205, 175, 106);
     margin: 20px 10px 20px 40px; 
+    height: 80%;
+    overflow: scroll;
 `;

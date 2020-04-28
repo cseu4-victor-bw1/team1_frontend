@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { COLOR } from "./variables"
 
 export const Container = styled.div`
@@ -36,14 +36,13 @@ export const Form = styled.form`
     margin: auto;
     display: flex;
     flex-direction: column;
-    top: 50px;
     position: relative;
 `;
 
 export const Input = styled.input`
     border: 5px inset ${COLOR.gold};
     width: 70%;
-    margin: 10px auto;
+    margin: 20px auto 0px;
     padding: 15px;
 `;
 
@@ -51,10 +50,49 @@ export const Submit = styled.input`
     border: 5px inset ${COLOR.gold};
     background-color: ${COLOR.gold};
     width: 70%;
-    margin: 10px auto;
+    margin: 20px auto 10px;
     padding: 5px;
     color: white;
     font-size: 1rem;
     font-weight: bold;
     letter-spacing: 2px;
 `;
+
+export const Error = styled.p`
+    color: white;
+    display: none;
+`;
+
+const dots = keyframes`
+        0 %, 20 % {
+            color: rgba(0, 0, 0, 0);
+            text- shadow:
+        .25em 0 0 rgba(0, 0, 0, 0),
+            .5em 0 0 rgba(0, 0, 0, 0);
+        }
+        40 % {
+        color: #2d3928;
+        text- shadow:
+        .25em 0 0 rgba(0, 0, 0, 0),
+        .5em 0 0 rgba(0, 0, 0, 0);}
+        60 % {
+        text- shadow:
+        .25em 0 0 #2d3928,
+        .5em 0 0 rgba(0, 0, 0, 0);}
+        80 %, 100 % {
+        text- shadow:
+        .25em 0 0 #2d3928,
+        .5em 0 0 #2d3928;}}
+`
+export const Loading = styled.p`
+    display: none;
+    width: 50%;
+    margin: 0pc auto;
+    font: 600 2em/100% Impact;
+    text-align: center;
+
+    &:after {
+        content: ' .';
+        animation: dots 1s steps(5, end) infinite;}
+`;
+

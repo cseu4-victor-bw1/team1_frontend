@@ -36,8 +36,6 @@ export const Form = styled.form`
     margin: auto;
     display: flex;
     flex-direction: column;
-    /* top: 50px;
-    position: relative; */
 `;
 
 export const Input = styled.input`
@@ -57,4 +55,7 @@ export const Submit = styled.input`
     font-size: 1rem;
     font-weight: bold;
     letter-spacing: 2px;
+`;
+
+export const Error = styled.p`
 `;

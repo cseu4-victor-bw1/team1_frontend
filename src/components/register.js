@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import { Container, Title, Input, Form, TitleBox, Submit } from "../assets/styles/registerStyling"
+import { Error, Loading } from "../assets/styles/loginStyling"
 import axios from "axios";
 
-export default function Register() {
+
+export default function Register(props) {
 
     const [form, setForm] = useState({
         username: "",
@@ -10,18 +12,35 @@ export default function Register() {
         password2: ""
     })
 
+    const [error, setError] = useState(null)
+
     const handleChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post("https://lambda-mud-test.herokuapp.com/api/registration/", form)
+        window.document.getElementById("submit").style.display = "none"
+        window.document.getElementById("loading").style.display = "block"
+        axios.post("https://cswk1-mud-game.herokuapp.com/api/registration/", form)
             .then(data => {
-                console.log(data)
+                props.setToken(data.token)
+                axios.get("https://lambda-mud-test.herokuapp.com/api/adv/init")
+                    .then(data => {
+                        props.setUser(data.data)
+                        window.history.location.push("/dashboard")
+                        props.setTitle(data.data.title)
+                        props.setText(data.data.description)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             })
             .catch(err => {
-                console.log(err.message)
+                setError(err.message)
+                window.document.getElementById("loading").style.display = "none"
+                window.document.getElementById("error").style.display = "block"
+                window.document.getElementById("submit").style.display = "block"
             })
     }
 
@@ -32,9 +51,11 @@ export default function Register() {
             </TitleBox>
             <Form onSubmit={handleSubmit}>
                 <Input type="text" name="username" placeholder="Username" onChange={handleChange} />
-                <Input type="text" name="password1" placeholder="Password" onChange={handleChange} />
-                <Input type="text" name="password2" placeholder="Confirm your Password" onChange={handleChange} />
-                <Submit type="submit" onSubmit={handleSubmit} value="SUBMIT" />
+                <Input type="password" name="password1" placeholder="Password" onChange={handleChange} />
+                <Input type="password" name="password2" placeholder="Confirm your Password" onChange={handleChange} />
+                <Error id="error">{error == "Network Error" ? "Sorry something went wrong there" : error}</Error>
+                <Submit type="submit" onSubmit={handleSubmit} value="SUBMIT" id="submit" />
+                <Loading className="loading" id="loading"></Loading>
             </Form>
         </Container>
     )

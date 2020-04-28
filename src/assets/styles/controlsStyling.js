@@ -30,7 +30,6 @@ export const TextImg = styled.img`
 export const ArrowImg = styled.img`
     width: 80px;
     height: 80px;
-    margin: 5px;
 `;
 
 export const Title = styled.div`
@@ -47,8 +46,15 @@ export const Text = styled.div`
     top: 90px;
     width: 65%;
     margin-left: 10%;
-    padding: 15px 5px 5px 5px;
+    padding: 15px 5px 5px 10px;
     height: 50%;
     overflow: scroll;
     color: white;
 `
+
+export const Button = styled.button`
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 2%;
+`;

@@ -1,11 +1,18 @@
 import React from "react";
-import Demo from "../assets/images/demo-game-play.gif"
-import { Img, Container } from "../assets/styles/dashboardStyling"
+import { Container, Canvas, Img } from "../assets/styles/dashboardStyling";
+import RoomMatrix from "./game-elements/roomMatrix"
+import Character from "./game-elements/character";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+
+
+
     return (
         <Container>
-            {/* <Img src={Demo} /> */}
+            <Canvas>
+                <RoomMatrix user={props.user} />
+                {/* <Character user={props.user} /> */}
+            </Canvas>
         </Container>
     )
 }
