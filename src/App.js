@@ -21,31 +21,30 @@ function App() {
 
   const [user, setUser] = useState(null)
 
-  const axiosWithAuth = (method, url, data) => {
+  const axiosWithAuth = (method, url, data, token) => {
     return axios({
       method: method,
       url: url,
       data: data,
       headers: {
-        "Authorization": token,
-        "Access-Control-Allow-Origin": ""
+        "Authorization": token
       }
     })
   }
 
   // NEEDS FIXING
   useEffect(() => {
-    if (history.location === "/login") {
+    if (history.location.pathname === "/login") {
       setTitle("Welcome Back Warrior")
       setText('You have return ... This one is braver than I thought. Login in to meet your fate!')
-    } else if (history.location === "/dashboard") {
+    } else if (history.location.pathname === "/dashboard") {
       setTitle("We begin ...")
       setText("... but will you survive")
     } else {
       setTitle("Welcome Barbarian!")
       setText(`You are new to these parts. Do you dare sign your life away to the Maze of Terror? Use the registation form to accept the challenge.`)
     }
-  }, [])
+  }, [history.location.pathname])
 
 
   return (
@@ -54,10 +53,10 @@ function App() {
         <Nav />
         <RoutersContainer>
           <Route exact path="/" render={(props) =>
-            <Register setToken={setToken} setUser={setUser} axiosWithAuth={axiosWithAuth} setText={setText} setTitle={setTitle} />
+            <Register setToken={setToken} token={token} setUser={setUser} axiosWithAuth={axiosWithAuth} setText={setText} setTitle={setTitle} />
           } />
           <Route exact path="/login" render={(props) =>
-            <Login setToken={setToken} setUser={setUser} axiosWithAuth={axiosWithAuth} setText={setText} setTitle={setTitle} />
+            <Login setToken={setToken} token={token} setUser={setUser} axiosWithAuth={axiosWithAuth} setText={setText} setTitle={setTitle} />
           } />
           <Route exact path="/dashboard" render={(props) =>
             <Dashboard user={user} />

@@ -1,9 +1,12 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 import { Container, Title, Input, Form, TitleBox, Submit, Error, Loading } from "../assets/styles/loginStyling";
 // import TitleBox from "../assets/images/buttonLong.png"
 import axios from "axios";
 
 export default function Login(props) {
+
+    const history = useHistory()
 
     const [form, setForm] = useState({
         username: "",
@@ -23,11 +26,11 @@ export default function Login(props) {
         window.document.getElementById("loading").style.display = "block"
         axios.post("https://archimedesbackend.herokuapp.com/login/", form)
             .then(data => {
-                props.setToken(data.token)
-                props.axiosWithAuth("post", "https://archimedesbackend.herokuapp.com/api/adv/initialize/")
+                props.setToken(`Token ${data.data.key}`)
+                // history.push("/dashboard")
+                props.axiosWithAuth("get", "https://archimedesbackend.herokuapp.com/api/adv/initialize/", props.token)
                     .then(data => {
                         props.setUser(data.data)
-                        window.history.location.push("/dashboard")
                         props.setTitle(data.data.title)
                         props.setText(data.data.description)
                     })

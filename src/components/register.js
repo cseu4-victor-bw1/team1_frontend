@@ -19,19 +19,20 @@ export default function Register(props) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         window.document.getElementById("submit").style.display = "none"
         window.document.getElementById("loading").style.display = "block"
         axios.post("https://archimedesbackend.herokuapp.com/registration/", form)
             .then(data => {
-                props.setToken(data.token)
-                props.axiosWithAuth("post", "https://archimedesbackend.herokuapp.com/api/adv/initialize/")
+                props.setToken(`Token ${data.token}`)
+                window.history.location.push("/dashboard")
+                const intialise = async => props.axiosWithAuth("get", "https://archimedesbackend.herokuapp.com/api/adv/initialize/")
                     .then(data => {
                         props.setUser(data.data)
-                        window.history.location.push("/dashboard")
                         props.setTitle(data.data.title)
                         props.setText(data.data.description)
+
                     })
                     .catch(err => {
                         console.log(err)

@@ -11,7 +11,6 @@ export default function Character() {
 const Img = styled.img`
     height: 50px;
     width: 50px;
-    position: absolute;
-    top: 350px;
-    /* right: 50px; */
+    position: relative;
+    top: 200px;
 `

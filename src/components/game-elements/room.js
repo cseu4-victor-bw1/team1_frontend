@@ -106,8 +106,8 @@ export default function Room(props) {
 
 const RoomGrid = styled.div`
     display: grid;
-    grid-auto-columns: 30px 30px 30px 30px 30px 30px;
-    grid-auto-rows: 30px 30px 30px 30px 30px 30px;
+    grid-auto-columns: 10px 10px 10px 10px 10px 10px;
+    grid-auto-rows: 10px 10px 10px 10px 10px 10px;
     grid-template-areas:
     "  1  2  3  4  5  6  "
     "  7  8  9  10 11 12 "
@@ -117,8 +117,8 @@ const RoomGrid = styled.div`
     "  31 32 33 34 35 36";
 
     img {
-        height: 30px;
-        width: 30px;
+        height: 10px;
+        width: 10px;
     }
 `;
 

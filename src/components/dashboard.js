@@ -132,10 +132,15 @@ export default function Dashboard(props) {
     }
 
     useEffect(() => {
-        axios.get("https://archimedesbackend.herokuapp.com/api/adv/rooms")
+        axios.get("https://lambda-mud-test.herokuapp.com/api/adv/rooms")
             .then(data => {
+                // prep for actual BE
+                // console.log(rooms)
+                // setRooms(data.rooms)
+                // matrixMap(data.rooms)
+                // mapRooms()
+
                 const rooms = JSON.parse(data.data.rooms)
-                console.log(rooms)
                 setRooms(rooms)
                 matrixMap(rooms)
                 mapRooms()
@@ -147,16 +152,14 @@ export default function Dashboard(props) {
 
     if (!rooms) {
         return (
-            <div></div>
+            <div> Loading ...</div >
         )
     }
-
-
     return (
         <Container>
             <Canvas>
-                <RoomMatrix roomData={array} rooms={rooms} />
                 <Character />
+                <RoomMatrix roomData={array} rooms={rooms} user={props.user} />
             </Canvas>
         </Container>
     )
