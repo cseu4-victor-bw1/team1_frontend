@@ -39,24 +39,22 @@ export default function Dashboard(props) {
                 y = Math.floor(columns / 2)
             }
 
-            let isPresent;
+            let isPresent = false;
             let count = 0
-
 
             // is it in the matrix ?
 
             while (count < matrix.length) {
-                console.log(matrix[count].find((room => room.pk !== matrix[count].pk)))
-                if (matrix[count].find((room => room.pk !== matrix[count].pk)) !== undefined) {
+                const findIt = matrix[count].find((room => room.pk !== matrix[count].pk))
+                if (findIt !== undefined) {
                     isPresent = true
-                } else {
-                    isPresent = false
                 }
                 count++
             }
 
+            console.log(isPresent, x, y, room)
+
             if (isPresent === false) {
-                console.log(room)
                 if (!room.x && !room.y) {
                     if (!matrix[y][x]) {
                         matrix[y][x] = room;
@@ -75,33 +73,33 @@ export default function Dashboard(props) {
 
             const hasRooms = room => {
                 if (room.fields.n_to > 0) {
-                    y = y - 1
+                    const ny = y - 1
                     let npk = rooms.find(curr => curr.pk === room.fields.n_to)
-                    npk.y = y
+                    npk.y = ny
                     npk.x = x
-                    matrix[y][x] = npk
+                    matrix[ny][x] = npk
 
                 }
                 if (room.fields.s_to > 0) {
-                    y = y + 1
+                    const ny = y + 1
                     const npk = rooms.find(curr => curr.pk === room.fields.s_to)
-                    npk.y = y
+                    npk.y = ny
                     npk.x = x
-                    matrix[y][x] = npk
+                    matrix[ny][x] = npk
                 }
                 if (room.fields.e_to > 0) {
-                    x = x + 1
+                    const nx = x + 1
                     const npk = rooms.find(curr => curr.pk === room.fields.e_to)
-                    npk.x = x
+                    npk.x = nx
                     npk.y = y
-                    matrix[y][x] = npk
+                    matrix[y][nx] = npk
                 }
                 if (room.fields.w_to > 0) {
-                    x = x - 1
+                    const nx = x - 1
                     const npk = rooms.find(curr => curr.pk === room.fields.w_to)
-                    npk.x = x
+                    npk.x = nx
                     npk.y = y
-                    matrix[y][x] = npk
+                    matrix[y][nx] = npk
                 }
             }
             hasRooms(room)
@@ -109,7 +107,8 @@ export default function Dashboard(props) {
 
         }
         console.log("this is the matrix", matrix)
-        const arr = rooms.forEach(room => placement(room, room.y, room.x))
+        // const arr = rooms.forEach(room => placement(room, room.y, room.x))
+        const arr = [placement(rooms[0], rooms[0].y, rooms[0].x), placement(rooms[1], rooms[1].y, rooms[1].x), placement(rooms[2], rooms[2].y, rooms[2].x), placement(rooms[3], rooms[3].y, rooms[3].x)]
 
         return arr
 
