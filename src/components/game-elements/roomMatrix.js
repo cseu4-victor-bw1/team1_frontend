@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
-import axios from "axios";
+import React from "react";
 import Room from "./room";
 import BlankSquare from "./blankSquare";
 import styled from "styled-components"
@@ -8,13 +7,13 @@ export default function RoomMatrix(props) {
 
 
     return (
-        <Canvas>
+        <Canvas id="map">
             {
                 !props.roomData ? <div></div> :
                     props.roomData.map((room, index) => {
 
                         if (room === 0) {
-                            return (< BlankSquare />)
+                            return (< BlankSquare key={index} />)
                         } else {
                             const thisRoom = props.rooms.filter(curr => curr.pk === room)
                             return (
@@ -36,9 +35,11 @@ export default function RoomMatrix(props) {
 
 
 const Canvas = styled.div`
-    overflow: scroll;
+    overflow: hidden;
     width: 900px;
     height: 900px;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    z-index: -1
 `;

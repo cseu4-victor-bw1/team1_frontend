@@ -12,15 +12,15 @@ export default function Dashboard(props) {
 
     // MARTIX initialise
 
-    const columns = 5
+    const columns = 70
+    let count = 0
 
-    let matrix = [
-        Array(columns).fill(0),
-        Array(columns).fill(0),
-        Array(columns).fill(0),
-        Array(columns).fill(0),
-        Array(columns).fill(0),
-    ]
+    let matrix = []
+
+    while (count < columns) {
+        matrix.push(Array(columns).fill(0))
+        count++
+    }
 
     // MARTIX placing rooms in coordinates
 
@@ -51,8 +51,6 @@ export default function Dashboard(props) {
                 }
                 count++
             }
-
-            console.log(isPresent, x, y, room)
 
             if (isPresent === false) {
                 if (!room.x && !room.y) {
@@ -106,7 +104,6 @@ export default function Dashboard(props) {
             return
 
         }
-        console.log("this is the matrix", matrix)
         // const arr = rooms.forEach(room => placement(room, room.y, room.x))
         const arr = [placement(rooms[0], rooms[0].y, rooms[0].x), placement(rooms[1], rooms[1].y, rooms[1].x), placement(rooms[2], rooms[2].y, rooms[2].x), placement(rooms[3], rooms[3].y, rooms[3].x)]
 
@@ -135,9 +132,10 @@ export default function Dashboard(props) {
     }
 
     useEffect(() => {
-        axios.get("https://lambda-mud-test.herokuapp.com/api/adv/rooms")
+        axios.get("https://archimedesbackend.herokuapp.com/api/adv/rooms")
             .then(data => {
                 const rooms = JSON.parse(data.data.rooms)
+                console.log(rooms)
                 setRooms(rooms)
                 matrixMap(rooms)
                 mapRooms()
@@ -158,7 +156,7 @@ export default function Dashboard(props) {
         <Container>
             <Canvas>
                 <RoomMatrix roomData={array} rooms={rooms} />
-                {/* <Character user={props.user} /> */}
+                <Character />
             </Canvas>
         </Container>
     )

@@ -7,6 +7,7 @@ export default function Login(props) {
 
     const [form, setForm] = useState({
         username: "",
+        email: "",
         password: ""
     })
 
@@ -20,10 +21,10 @@ export default function Login(props) {
         e.preventDefault()
         window.document.getElementById("submit").style.display = "none"
         window.document.getElementById("loading").style.display = "block"
-        axios.post("https://lambda-mud-test.herokuapp.com/api/login", form)
+        axios.post("https://archimedesbackend.herokuapp.com/login/", form)
             .then(data => {
                 props.setToken(data.token)
-                axios.get("https://lambda-mud-test.herokuapp.com/api/adv/init")
+                props.axiosWithAuth("post", "https://archimedesbackend.herokuapp.com/api/adv/initialize/")
                     .then(data => {
                         props.setUser(data.data)
                         window.history.location.push("/dashboard")
@@ -49,6 +50,7 @@ export default function Login(props) {
             </TitleBox>
             <Form onSubmit={handleSubmit}>
                 <Input type="text" name="username" placeholder="Username" onChange={handleChange} />
+                <Input type="email" name="email" placeholder="Email" onChange={handleChange} />
                 <Input type="password" name="password" placeholder="Password" onChange={handleChange} />
                 <Error id="error">{error == "Network Error" ? "Sorry something went wrong there" : error}</Error>
                 <Submit type="submit" onSubmit={handleSubmit} value="SUBMIT" id="submit" />

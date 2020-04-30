@@ -8,6 +8,7 @@ export default function Register(props) {
 
     const [form, setForm] = useState({
         username: "",
+        email: "",
         password1: "",
         password2: ""
     })
@@ -22,10 +23,10 @@ export default function Register(props) {
         e.preventDefault()
         window.document.getElementById("submit").style.display = "none"
         window.document.getElementById("loading").style.display = "block"
-        axios.post("https://cswk1-mud-game.herokuapp.com/api/registration/", form)
+        axios.post("https://archimedesbackend.herokuapp.com/registration/", form)
             .then(data => {
                 props.setToken(data.token)
-                axios.get("https://lambda-mud-test.herokuapp.com/api/adv/init")
+                props.axiosWithAuth("post", "https://archimedesbackend.herokuapp.com/api/adv/initialize/")
                     .then(data => {
                         props.setUser(data.data)
                         window.history.location.push("/dashboard")
@@ -51,6 +52,7 @@ export default function Register(props) {
             </TitleBox>
             <Form onSubmit={handleSubmit}>
                 <Input type="text" name="username" placeholder="Username" onChange={handleChange} />
+                <Input type="email" name="email" placeholder="Email" onChange={handleChange} />
                 <Input type="password" name="password1" placeholder="Password" onChange={handleChange} />
                 <Input type="password" name="password2" placeholder="Confirm your Password" onChange={handleChange} />
                 <Error id="error">{error == "Network Error" ? "Sorry something went wrong there" : error}</Error>

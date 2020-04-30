@@ -2,12 +2,14 @@ import styled from "styled-components"
 import { COLOR } from "./variables"
 
 export const Container = styled.div`
-    height: 80%;
+    height: 95%;
     width: 60%;
-    margin: 5% 20%;
+    margin: 5px 20%;
     border: 5px inset ${COLOR.gold};
     background-color: ${COLOR.brown};
-
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 `;
 
 export const Img = styled.img`
@@ -23,8 +25,7 @@ export const TitleBox = styled.div`
     width: 50%;
     height: 20%;
     padding: 2%;
-    text-align: center;
-    margin: 0 auto;
+    margin-left: 130px ;
 `;
 
 export const Title = styled.h1`
@@ -41,8 +42,8 @@ export const Form = styled.form`
 export const Input = styled.input`
     border: 5px inset ${COLOR.gold};
     width: 70%;
-    margin: 10px auto;
-    padding: 15px;
+    margin: 5px auto;
+    padding: 10px;
 `;
 
 export const Submit = styled.input`
