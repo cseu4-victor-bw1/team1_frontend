@@ -234,19 +234,3 @@ const BL = styled.img`
 const BR = styled.img`
     grid-area: "36";
 `
-
-
-const RoomXX = styled.div`
-  width: 9.2%;
-  height: 100%;
-  margin:0;
-  padding:0;
-  text-align: center;
-  font-family: cursive;
-  background-color: ${props => (props.crt === props.title ? 'green' : 'wheat')};
-  color: ${props => (props.crt === props.title ? 'white' : 'black')};
-  border-top: ${props => (props.n_to > 0 ? '4px solid wheat' : '4px solid grey')};
-  border-bottom: ${props => (props.s_to > 0 ? '4px solid wheat' : '4px solid grey')};
-  border-right: ${props => (props.e_to > 0 ? '4px solid wheat' : '4px solid grey')};
-  border-left: ${props => (props.w_to > 0 ? '4px solid wheat' : '4px solid grey')};
-`;
